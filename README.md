@@ -16,7 +16,9 @@ and the application will then showcase all the matches found based on the provid
   <li>Python</li>
  <li>Flask</li>
  <li>HTML</li>
+ <li>Bootstrap</li>
 <li>CSS</li>
+<li>For Deployment: AWS (EC2)</li>
 </ul>
 
 <h1>Frontend</h1>
