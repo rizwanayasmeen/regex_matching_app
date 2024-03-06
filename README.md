@@ -9,7 +9,7 @@ In essence, RegEx provides a structured approach to efficiently handle various t
 <b>Task 1:</b> The task is to develop a web application that replicates the fundamental features of the website <a href="https://regex101.com/" target='_blank'>regex101.com.</a>
 The objective is to create a platform where users can input a test string and a regular expression (regex), 
 and the application will then showcase all the matches found based on the provided regex pattern.<br><br>
-<b>Task 2:</b>The task is to develop a web  Application where a user can validate if a given email id is valid or not. 
+<b>Task 2:</b> The task is to develop a web  Application where a user can validate if a given email id is valid or not. 
 <h1>Technology used for the Development</h1>
 <ul>
 
