@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Pattern Matching App</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<style>
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #C5E1A5;
+ 
+}
+.con-style{
+    background: #efefef;
+    -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    
+    
+}
+
+.form-label {
+    font-size: .8em;
+    letter-spacing: 1px;
+    color: rgb(120, 120, 120);
+    transition: ease .3s;
+}
+.form-control{
+border: 1px solid #c4d1dd;
+}
+</style>
+
+
+</head>
+<body>
+<div class="container mt-4 mb-4">
+    <div class="row p-3">
+        <div class="col-md-6 offset-md-3 con-style p-4">
+
+            <h1 class="mb-4 text-center">Regex Matcher</h1>
+            <form action="/results" method="post">
+                <div class="mb-3">
+                    <label for="test_string" class="form-label">String:</label>
+                    <textarea class="form-control" id="test_string" name="test_string" rows="4" required placeholder="Enter Text eg. Apple, Appricot"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="regex_pattern" class="form-label">Regex Pattern:</label>
+                    <input type="text" class="form-control" id="regex_pattern" name="regex_pattern" required placeholder="Enter Regex Pattern eg. A\w+">
+                </div>
+                <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-info">Match</button>
+            </div>
+            </form>
+
+            {% if test_string and regex_pattern %}
+                
+                {% if matched_strings %}
+                    <!-- Show results modal if matches found -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="resultsModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="background: #f5f5f5; border: 1px solid #a3cfbb;">
+                                <div class="modal-header" style="border-bottom: 1px solid #a3cfbb;">
+                                    <h4 class="modal-title text-success"><b>Match Found</b></h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><b>String:</b> {{ test_string }}</p>
+                                    <p><b>Regex Pattern:</b> {{ regex_pattern }}</p>
+				    <p><b>No.of Matched Strings:</b> {{ num_of_matches }}</p>
+                                    <h5 class="mt-4">Matched Strings:</h5>
+                                    <ul class="list-group flex-wrap list-group-horizontal">
+                                        {% for match in matched_strings %}
+                                            <li class="list-group-item list-group-item-success flex-fill">{{ match }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
+                            resultsModal.show();
+                        });
+                    </script>
+                {% else %}
+                    <!-- Show no match found modal if no matches found -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="nomatchfound">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="background: #f5f5f5; border: 1px solid #f1aeb5;">
+                                <div class="modal-header" style="border-bottom: 1px solid #f1aeb5;">
+                                    <h4 class="modal-title text-danger"><b>No Match Found</b></h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><b>String:</b> {{ test_string }}</p>
+                                    <p><b>Regex Pattern:</b> {{ regex_pattern }}</p>
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        <h5>No matches were found for the provided string and regex pattern.</h5>
+                                      </div>
+                                    <h6 class="mb-0 text-danger"></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var nomatchfound = new bootstrap.Modal(document.getElementById('nomatchfound'));
+                            nomatchfound.show();
+                        });
+                    </script>
+                {% endif %}
+            {% endif %}
+            <div class="col-md-12 mt-4 mb-2 text-center alert alert-warning">
+                <h3 class="">Implementation of new route<br>where a user can validate if a given email id is valid or not<br><a href="{{ url_for('email_validation') }}" class="text-danger">Click Here</a></h3>
+            </div>
+        </div>
+
+
+    
+    </div>
+</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

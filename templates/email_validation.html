@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validation</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<style>
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #C5E1A5;
+ 
+}
+.con-style{
+    background: #efefef;
+    -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    
+    
+}
+
+.form-label {
+    font-size: .8em;
+    letter-spacing: 1px;
+    color: rgb(120, 120, 120);
+    transition: ease .3s;
+}
+.form-control{
+border: 1px solid #c4d1dd;
+}
+</style>
+
+
+</head>
+<body>
+<div class="container mt-4 mb-4">
+    <div class="row p-3">
+        <div class="col-md-6 offset-md-3 con-style p-4">
+
+            <h1 class="mb-4 text-center">Email Validation</h1>
+            <form action="/validate_email" method="post">
+                <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="text" id="email" name="email" class="form-control" required placeholder="Enter Email ID eg. john@example.com">
+            </div>
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-info">Validate Email</button>
+                </div>
+                
+            </form>
+            
+            {% if email %}
+                <h4>Validation Result:</h4>
+                <p><b>Email:</b> {{ email }}</p>
+                {% if is_valid_email %}
+                <div class="alert alert-success text-center" role="alert">
+			<h5 class='pt-2'><b>The Email ID is Valid.</b></h5>
+                  </div>
+                {% else %}
+                <div class="alert alert-danger text-center" role="alert">
+			<h5 class='pt-2'><b>The Email ID is not Valid.</b></h5>
+                  </div>
+                    
+                {% endif %}
+            {% endif %}
+
+<div class="col-md-12 mt-4 mb-2 text-center alert alert-warning">
+	<h4 class="">Implementation of<br>Regex Matching Web App Development<br><a href="{{ url_for('home') }}" class="text-danger">Click Here</a></h4>
+            </div>           
+        
+        </div>
+    </div>
+    
+</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
